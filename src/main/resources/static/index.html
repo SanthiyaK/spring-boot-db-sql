@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Students List</title>
+</head>
+<body>
+  <h2>Students from MySQL (Docker)</h2>
+  <table border="1" id="studentTable">
+    <thead><tr><th>ID</th><th>Name</th><th>Department</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch("http://localhost:8080/api/students")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("tbody");
+        data.forEach(s => {
+          const row = `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.department}</td></tr>`;
+          tbody.innerHTML += row;
+        });
+      });
+  </script>
+</body>
+</html>
